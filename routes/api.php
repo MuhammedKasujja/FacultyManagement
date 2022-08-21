@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CourseController;
+use App\Http\Controllers\StudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,5 +28,17 @@ Route::group(['prefix' => 'auth'], function () {
 });
 
 Route::group(['prefix' => 'students', 'middleware' => 'jwt.verify'], function () {
-    
+    Route::post('/', [StudentController::class, 'index']);
+    Route::post('view', [StudentController::class, 'show']);
+    Route::post('delete', [StudentController::class, 'destroy']);
+    Route::post('create', [StudentController::class, 'create']);
+    Route::post('update', [StudentController::class, 'update']);
+});
+
+Route::group(['prefix' => 'courses', 'middleware' => 'jwt.verify'], function () {
+    Route::post('/', [CourseController::class, 'index']);
+    Route::post('view', [CourseController::class, 'show']);
+    Route::post('delete', [CourseController::class, 'destroy']);
+    Route::post('create', [CourseController::class, 'create']);
+    Route::post('update', [CourseController::class, 'update']);
 });

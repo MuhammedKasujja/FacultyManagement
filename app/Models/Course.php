@@ -6,9 +6,14 @@ use App\Helpers\Helper;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Student extends Model
+class Course extends Model
 {
+    
     use HasFactory;
+
+    protected $fillable =[
+        'name'
+    ];
 
     public static function boot()
     {
@@ -17,20 +22,20 @@ class Student extends Model
 
         static::creating(function ($model) {
 
-            $unique_id = "0000000";
+            $unique_id = "0000";
 
             $unique_id .= isset($model->attributes['id']) ? $model->attributes['id'] : rand();;
 
-            $model->attributes['student_no'] = "S-" . Helper::routefreestring($unique_id);
+            $model->attributes['code'] = "C-" . Helper::routefreestring($unique_id);
         });
 
         static::created(function ($model) {
 
-            $unique_id = "0000000";
+            $unique_id = "0000";
 
             $unique_id .= isset($model->attributes['id']) ? $model->attributes['id'] : rand();;
 
-            $model->attributes['student_no'] = "S-" . Helper::routefreestring($unique_id);
+            $model->attributes['code'] = "C-" . Helper::routefreestring($unique_id);
 
             $model->save();
         });
