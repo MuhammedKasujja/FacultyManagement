@@ -14,21 +14,9 @@ class AddCourseForeignKeyOnStudents extends Migration
     public function up()
     {
         Schema::table('students', function (Blueprint $table) {
-            $table->after('address', function ($table){          
-               $table->foreignId('course_id')->constrained('courses')->onDelete('cascade');
+            $table->after('address', function ($table) {
+                $table->foreignId('course_id')->constrained('courses')->onDelete('cascade');
             });
-        });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::table('courses', function (Blueprint $table) {
-            //
         });
     }
 }

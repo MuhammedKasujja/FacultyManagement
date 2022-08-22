@@ -19,8 +19,8 @@ class CreateStudentsTable extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->enum('gender', ['male', 'female']);
-            $table->enum('type',['public', 'private'])->default('private');
-            $table->date('birthday');
+            $table->enum('type', ['public', 'private'])->default('private');
+            $table->string('birthday');
             $table->string('picture')->default(env('APP_URL') . "/placeholder.jpg");
             $table->string('mobile')->nullable();
             $table->string('address')->nullable();

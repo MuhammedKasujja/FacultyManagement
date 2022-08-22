@@ -8,12 +8,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Course extends Model
 {
-    
+
     use HasFactory;
 
-    protected $fillable =[
+    protected $fillable = [
         'name'
     ];
+
+    public function students(){
+        return $this->hasMany(Student::class);
+    }
 
     public static function boot()
     {
